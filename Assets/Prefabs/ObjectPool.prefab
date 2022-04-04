@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6776527825992490322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6776527825992490332}
+  - component: {fileID: 6776527825992490333}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6776527825992490332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776527825992490322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6776527825992490333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776527825992490322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6e80812e3b288458c0e72d2ed2e63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duitPrefab: {fileID: 5231239360271575376, guid: 1b1f5d84443b4c141858834a2fa1817f,
+    type: 3}
+  toyolPrefab: {fileID: 5276996102077153330, guid: 1f287d91255bb4548b3fe6db93e51009,
+    type: 3}
+  pocongPrefab: {fileID: 975368678746146051, guid: 7dc034ca88679664ba6e72b09c7f8449,
+    type: 3}
+  hantuRayaPrefab: {fileID: 6842318883949274904, guid: 634a3517aadde9f49b5fa9156d94df9a,
+    type: 3}
+  totalDuit: 5
+  totalToyol: 5
+  totalPocong: 5
+  totalHantuRaya: 5
+  duitList: []
+  toyolList: []
+  pocongList: []
+  hantuRayaList: []

@@ -12,24 +12,23 @@ public class GameController : MonoBehaviour {
 	public GameObject Car;
 	private bool isAddPocong = false;
 	private bool isAddHantuRaya = false;
-	float[] spawnWait = new float[3] {1f, 1.2f, 0.8f};
+	float[] spawnWait = new float[3] {1f, 1.2f, 0.6f};
 	public float startWait;
 	private float speed = 6;
 	float[] XPosition = new float[3] {-1.36f,0f, 1.36f};
 	float[] XPositionSpecial = new float[2] {-0.87f,0.53f};
 	bool IsGameOver;
 	public Text GameScoreText;
-	int score=0;
+	public int score=0;
 	int highscore;
 	public Text HighScoreText, scoreText;
 	int CurrentPosition;
-	private IEnumerator updateStatus,spawnWaves;
+	private IEnumerator updateStatus,spawnWaves, updateScore;
 	// Use this for initialization
-	const int MAX_TRIES = 4;
     private Vector2 startTouchpPosition, endTouchPosition;
 	public ParticleSystem leftDustParticle;
 	public ParticleSystem rightDustParticle;
-	public bool isLeftButton, isRightButton, CanSwipe;
+	public bool isLeftButton, isRightButton, CanSwipe, IsTest;
 
 	public List<GameObject> panelList = new List<GameObject>();
 
@@ -46,7 +45,7 @@ public class GameController : MonoBehaviour {
 	string IsPhone;
 
 	ObjectPoolManager objectPoolManager;	
-	private void Start() {
+	private void Awake() {
 		objectPoolManager = GameObject.Find("ObjectPool").GetComponent<ObjectPoolManager>();
 		IsGameOver = true;
 		rendererLength = bgRenderer.bounds.size.y;
@@ -62,7 +61,13 @@ public class GameController : MonoBehaviour {
 		CanSwipe = true;
 	}
 
-	public void StartGame() {
+	public void StartGame(bool value) {
+		IsTest = value;
+
+		score = 0;
+
+		GameScoreText.text= score.ToString ();
+		
 		Invoke("StartSwipe", .5f);
 
 		screamSource.Stop();
@@ -77,17 +82,13 @@ public class GameController : MonoBehaviour {
 
 		InvokeRepeating("IncreaseSpeed", 30, 30);
 
-		if(!PlayerPrefs.HasKey ("IsTry")){
-			PlayerPrefs.SetInt ("IsTry", 0);
-		}
-
 		if(IsPhone == "true"){
 			hintText.GetComponent<Text>().text = "SWIPE TO COLLECT DUIT RAYA";
 		}else{
 			hintText.GetComponent<Text>().text = "USE ARROW KEYS TO COLLECT DUIT RAYA";
 		}
 
-		if(PlayerPrefs.GetInt ("IsTry") == 1){
+		if(IsTest){
 			hintText.SetActive(true);
 		}else{
 			hintText.SetActive(false);
@@ -169,8 +170,8 @@ public class GameController : MonoBehaviour {
 				prefabList.Add("HantuRaya");
 				isAddHantuRaya = true;
 			}
+			Car.transform.DOMoveX (posX, 0.3f);
 		}
-		Car.transform.DOMoveX (posX, 0.3f);
 	}
 
 	private void MoveLeft(){
@@ -204,10 +205,6 @@ public class GameController : MonoBehaviour {
 		scoreSource.Play();
 	}
 
-	[ContextMenu("Update Phone")]
-	public void UpdatePhone(){
-		StartCoroutine(UpdateStatus());
-	}
     IEnumerator UpdateStatus(){
 
         var url = NetworkManager._url +PlayerPrefs.GetString("PhoneNo")+"?score="+score;
@@ -219,19 +216,26 @@ public class GameController : MonoBehaviour {
 
         yield return www.SendWebRequest();
         if(www.result == UnityWebRequest.Result.ConnectionError){
-            print("Error Network");
         }
         if(www.isDone){
             if(www.result == UnityWebRequest.Result.Success){
                 JSONNode data = JSON.Parse(www.downloadHandler.text);
-                // PlayerPrefs.SetInt("Tries", int.Parse(data["phone"]["tries"]));
+                PlayerPrefs.SetInt("Tries", int.Parse(data["phone"]["tries"]));
+				if(PlayerPrefs.GetInt("Tries") >= 3){
+					OpenPanel("ZeroChancePanel");
+				}else{
+					OpenPanel("RealOverPanel");
+				}
+				ResetGame();
             }else{
                 JSONNode error = JSON.Parse(www.downloadHandler.text);
-				print(error);
             }
         }
     }
+	
 	public void GameOver(){	
+		speed = 0;
+		
 		IsGameOver = true;
 
 		musicSource.Stop();
@@ -244,13 +248,19 @@ public class GameController : MonoBehaviour {
 			StopCoroutine(spawnWaves);
 		}
 
-		foreach (Transform child in  GameObject.Find("ObjectPool").gameObject.transform)
-    		child.gameObject.SetActive(false);
-
 		screamSource.Play();
 
-		//IF score is greater than highscore change the stored value of highscore
-		if (PlayerPrefs.GetInt ("IsTry") == 0) {
+		if(updateScore != null){
+			StopCoroutine(updateScore);
+		}
+		updateScore = UpdateScore();
+		StartCoroutine(updateScore);
+	}
+
+	IEnumerator UpdateScore(){
+		yield return new WaitForSeconds(.6f);		
+				
+		if (!IsTest) {
 			if(score > PlayerPrefs.GetInt ("HighScore")){
 				PlayerPrefs.SetInt ("HighScore", score);
 			}
@@ -259,38 +269,27 @@ public class GameController : MonoBehaviour {
 			}
 			updateStatus = UpdateStatus();
 			StartCoroutine(updateStatus);
-
-			int tries = PlayerPrefs.GetInt("Tries") + 1;
-			PlayerPrefs.SetInt("Tries", tries);
-
-			//Show highscore value on HighScoreText
-			if(tries >= 3){
-				OpenPanel("ZeroChancePanel");
-			}
+		}else{
+			OpenPanel("TestOverPanel");
+			ResetGame();
 		}
-		if(PlayerPrefs.GetInt ("Tries") < 3){
-			OpenPanel("GameOverPanel");
-			scoreText.text = score.ToString();
-			PlayerPrefs.SetInt ("IsTry", 0);
-		}
-
-		ResetGame();
 	}
 
 	void ResetGame(){
+		foreach (Transform child in  GameObject.Find("ObjectPool").gameObject.transform)
+    		child.gameObject.SetActive(false);
+
 		isAddPocong = false;
 
 		isAddHantuRaya = false;
 
 		posX = 0;
 
+		Car.transform.position = new Vector2(0, Car.transform.position.y);
+
 		CurrentPosition = 0;
 
 		speed = 6;
-
-		score = 0;
-
-		GameScoreText.text= score.ToString ();
 
 		prefabList.Clear();
 

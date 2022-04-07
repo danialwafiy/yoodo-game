@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CharacterAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 3
+      m_CompressionQuality: 0
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: e24da396a4a7cfa4cafaa87279d69bed, type: 3}
+    - {fileID: 2800000, guid: 65f5b402f31352c4888eb7f19d0cdb80, type: 3}
+    - {fileID: 2800000, guid: 59a541da8e379664ba5883eb26b57b4f, type: 3}
+    - {fileID: 2800000, guid: e0e6a54683475f544b2b144fddb21144, type: 3}
+    - {fileID: 2800000, guid: 457b2a4b5754a194e8ddad0617fe865c, type: 3}
+    - {fileID: 2800000, guid: 9a15fa36f017e424ba99f530b5b16668, type: 3}
+    - {fileID: 2800000, guid: 21437846df24eb649b5028c725ae4a8d, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 65f5b402f31352c4888eb7f19d0cdb80, type: 3}
+  - {fileID: 21300000, guid: 9a15fa36f017e424ba99f530b5b16668, type: 3}
+  - {fileID: 21300000, guid: e0e6a54683475f544b2b144fddb21144, type: 3}
+  - {fileID: 21300000, guid: 21437846df24eb649b5028c725ae4a8d, type: 3}
+  - {fileID: 21300000, guid: e24da396a4a7cfa4cafaa87279d69bed, type: 3}
+  - {fileID: 21300000, guid: 59a541da8e379664ba5883eb26b57b4f, type: 3}
+  - {fileID: 21300000, guid: 457b2a4b5754a194e8ddad0617fe865c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - yoodo-rayagame_04-chance 1
+  - yoodo-rayagame_05-scoreboard
+  - yoodo-rayagame_05-pocong
+  - yoodo-rayagame_05-toyol
+  - rayagame-car
+  - yoodo-rayagame_05-hanturaya
+  - yoodo-rayagame_05-rayapacket
+  m_RenderDataMap: {}
+  m_Tag: CharacterAtlas
+  m_IsVariant: 0

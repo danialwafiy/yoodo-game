@@ -78,7 +78,6 @@ public class ObjectPoolManager : MonoBehaviour
             if(!hantuRaya.gameObject.activeSelf){
                 return hantuRaya;
             }else{
-                print("Missing "+type);
             }
             }
             return null;

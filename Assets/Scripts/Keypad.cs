@@ -19,9 +19,8 @@ public class Keypad : MonoBehaviour
     
     GameController gameController;
 
-    private void Start() {
+    private void Awake() {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        Application.targetFrameRate = -1;
     }
     public void KeypadPressed(string alphabet){
         toastText.text = "";
@@ -82,7 +81,6 @@ public class Keypad : MonoBehaviour
                     wordIndex = 1;
                     phoneNoText.text = "";
                     JSONNode error = JSON.Parse(www.downloadHandler.text);
-                    print(error);
                     toastText.text = error["error"];
                     playBtn.interactable = true;
                 }

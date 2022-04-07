@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7852249228880154371}
   - component: {fileID: 5459933832114123018}
   - component: {fileID: 2980849122044448289}
+  - component: {fileID: 2945524273233271147}
   m_Layer: 0
   m_Name: Pocong
   m_TagString: Obstacle
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: e0e6a54683475f544b2b144fddb21144, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 1.96, y: 3.87}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!68 &2980849122044448289
@@ -154,3 +155,17 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &2945524273233271147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975368678746146051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b52b343b480fb40a4c954bc069fe65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atlas: {fileID: 4343727234628468602, guid: c084d9d943d58ba4785e3b7d40650b12, type: 2}
+  sprite_name: yoodo-rayagame_05-pocong
